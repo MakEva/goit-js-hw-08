@@ -8,19 +8,4 @@ export function createItemMarkup(arr) {
     }).join("")
 }
 
-
-export function imgOpenModal(evt) {
-    evt.preventDefault();
-}
-    
-export function createModal({ original, description } = {}) {
-    return `<div>
-             <img src="${original}" alt="${description}"/>
-          </div>`;
-}
-
-export {
-    createItemMarkup,
-    imgOpenModal,
-    createModal
-}
+  
