@@ -7,11 +7,9 @@ const player = new Player(iFrame);
 const LS = "videoplayer-current-time";
 const currentTime = function (evt) {
     localStorage.setItem(LS, evt.seconds);
-    console.log(evt.seconds);
-} 
+ } 
 
 player.on("timeupdate", throttle(currentTime, 1000));
-// console.log(player);
 
 const lastTime = Number(localStorage.getItem(LS));
 
