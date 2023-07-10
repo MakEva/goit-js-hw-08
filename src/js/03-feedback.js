@@ -17,15 +17,20 @@ function onFormInput(evt) {
     formInput[evt.target.name] = evt.target.value;
     localStorage.setItem(LS_KEY, JSON.stringify(formInput));
 }
-
 function onFormSubmit(evt) {
     evt.preventDefault();
-    evt.currentTarget.reset();
+    selector.form.reset();
+    const savedMessage = localStorage.getItem(LS_KEY);
     localStorage.removeItem(LS_KEY);
-    console.log(formInput);
     formInput = {};
+       if (savedMessage) {
+        const { email, message } = JSON.parse(savedMessage);
+        selector.emailInput.value = email || "";
+        selector.messageInput.value = message || "";
+        console.log({ email, message });
+    }
+  
 }
-
 function isPreviousMessage() {
     const savedMessage = localStorage.getItem(LS_KEY);
     if (savedMessage) {
@@ -34,3 +39,5 @@ function isPreviousMessage() {
         selector.messageInput.value = message || "";
     }
 }
+
+
