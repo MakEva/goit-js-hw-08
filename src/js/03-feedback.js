@@ -7,7 +7,7 @@ const selector = {
 }
 
 const LS_KEY = "feedback-form-state";
-let formInput = {};
+let formInput = JSON.parse(localStorage.getItem(LS_KEY)) || {};
 isPreviousMessage();
 
 selector.form.addEventListener("input", throttle(onFormInput, 500));
@@ -19,17 +19,10 @@ function onFormInput(evt) {
 }
 function onFormSubmit(evt) {
     evt.preventDefault();
-    selector.form.reset();
-    const savedMessage = localStorage.getItem(LS_KEY);
+    console.log(formInput);
     localStorage.removeItem(LS_KEY);
+    selector.form.reset();
     formInput = {};
-       if (savedMessage) {
-        const { email, message } = JSON.parse(savedMessage);
-        selector.emailInput.value = email || "";
-        selector.messageInput.value = message || "";
-        console.log({ email, message });
-    }
-  
 }
 function isPreviousMessage() {
     const savedMessage = localStorage.getItem(LS_KEY);
